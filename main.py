@@ -1,4 +1,4 @@
-
+import database as db
 
 if __name__ == "__main__":
-    print('Sohaib Hussain')
+    db.initializeSoftware("test.db")
