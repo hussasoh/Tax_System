@@ -31,7 +31,7 @@ class Database:
                 self.__cursor.execute(query)
                 print("Table Created Successfully successfully")
             except Error as e:
-                print e
+                print(e)
         self.__connection.commit()
 
     def checkUserExists(self, username):
@@ -45,22 +45,8 @@ class Database:
                     exists = True
                 return exists
             except Error as e:
-                print e
+                print(e)
                 return exists
-
-    def validateUser(self, username, password):
-        queryCheck = "SELECT * FROM Users WHERE username = ? and password = ?"
-        valid = False
-        if self.__cursor is not None:
-            try:
-                self.__cursor.execute(queryCheck, [username, password])
-                rows = self.__cursor.fetchall()
-                if rows is not None and len(rows) > 0:
-                    valid = True
-            except Error as e:
-                print e
-            finally:
-                return valid
 
     def addUser(self, username, password):
         queryInsert = "INSERT INTO Users(username,password) VALUES (?,?)"
@@ -70,5 +56,5 @@ class Database:
                     self.__cursor.execute(queryInsert, (username, password))
                     print("Added successfully")
             except Error as e:
-                print e
+                print(e)
         self.__connection.commit()
